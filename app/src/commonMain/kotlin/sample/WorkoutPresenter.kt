@@ -15,65 +15,42 @@ class WorkoutPresenter(
         showState()
     }
 
-    fun onResume() {
-        timer.start()
-    }
-
-    fun onStop() {
-        timer.stop()
-    }
-
     fun onNext() {
         val position = states.indexOf(state)
-        if (position < states.size - 1) {
+        if (position < states.lastIndex) {
             state = states[position + 1]
+            showState()
         }
-        showState()
     }
 
     fun onPrevious() {
         val position = states.indexOf(state)
         if (position > 0) {
             state = states[position - 1]
+            showState()
         }
-        showState()
     }
 
     private fun showState() {
         val titleText: String
         val state = state
-        when (state) {
-            is PrepareState -> {
-                speaker.playWhistle()
-                titleText = "Prepare for " + state.exercise.nameText
-//                setExercisesCountDisplay(state.index)
-            }
-            is ExerciseState -> {
-                speaker.playWhistle()
-                titleText = state.exercise.nameText
-//                setExercisesCountDisplay(state.index)
-            }
-            is DoneState -> {
-                speaker.playEndSound()
-                titleText = "Done"
-//                setExercisesCountDisplay(null)
-            }
+        titleText = when (state) {
+            is PrepareState -> "Prepare for " + state.exercise.nameText
+            is ExerciseState -> state.exercise.nameText
+            is DoneState -> "Done"
         }
         view.setUpWorkoutDisplay(titleText, state.imageApiName)
         speaker.speak(titleText)
-        setUpTimer(state.time)
+        timer.stop()
+        if(state is DoneState) {
+            view.hideTimer()
+        } else {
+            setUpTimer(state.time)
+        }
     }
 
-//    private fun setExercisesCountDisplay(index: Int?) {
-//        val text = if (index == null) "" else "${index + 1}/${exercises.size}"
-//        exercisesCounterDisplay.set(text)
-//    }
-
     private fun setUpTimer(durationSeconds: Int?) {
-        if (durationSeconds == null) {
-            view.hideTimer()
-            return
-        }
+        durationSeconds ?: return
         view.updateTimer(nowSec = 0, endSec = durationSeconds)
         timer.start(durationSeconds,
             onTick = { secondsUntilFinished ->

@@ -1,16 +1,20 @@
 PODS:
+  - Nuke (7.5.2)
   - SnapKit (4.0.0)
 
 DEPENDENCIES:
+  - Nuke (~> 7.0)
   - SnapKit (~> 4.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Nuke
     - SnapKit
 
 SPEC CHECKSUMS:
+  Nuke: 0350d346a688426e8f2331253ef28dc2fc4f6178
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
 
-PODFILE CHECKSUM: 42bd667a392afe66bc0d5a02c99fd85d0c90cace
+PODFILE CHECKSUM: 74442c59ad8d0b1638d8c4a797051024dcc10217
 
 COCOAPODS: 1.5.3

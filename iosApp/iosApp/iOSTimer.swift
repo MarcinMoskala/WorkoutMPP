@@ -1,0 +1,45 @@
+//
+//  iOSTimer.swift
+//  iosApp
+//
+//  Created by Marcin Moskala on 05/03/2019.
+//
+
+import Foundation
+import app
+
+class iOSTimer: app.Timer {
+    
+    var timer: Foundation.Timer? = nil
+    
+    func start(seconds: Int32, onTick: @escaping (KotlinInt) -> KotlinUnit, onFinish: @escaping () -> KotlinUnit) {
+        var secondsLeft = seconds
+        _onTick = {
+            secondsLeft -= 1
+            if secondsLeft > 0 {
+                onTick(KotlinInt(int: secondsLeft))
+            } else {
+                onFinish()
+            }
+        }
+        
+        timer = Foundation.Timer.scheduledTimer(
+            timeInterval: 1,
+            target: self,
+            selector: #selector(self.onTickFunction),
+            userInfo: nil,
+            repeats: true
+        )
+    }
+    
+    func stop() {
+        if let timer = timer {
+            timer.invalidate()
+        }
+    }
+    
+    var _onTick: ()->() = {}
+    @objc func onTickFunction() {
+        _onTick()
+    }
+}

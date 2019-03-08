@@ -8,8 +8,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), WorkoutView {
 
-    private val speaker by lazy { AndroidSpeaker(this) }
-    private val presenter by lazy { WorkoutPresenter(this, AndroidTimer(), speaker) }
+    private val presenter by lazy { WorkoutPresenter(this, AndroidTimer(), AndroidSpeaker(this)) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,21 +16,6 @@ class MainActivity : AppCompatActivity(), WorkoutView {
         nextButton.setOnClickListener { presenter.onNext() }
         prevButton.setOnClickListener { presenter.onPrevious() }
         presenter.onStart()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        presenter.onResume()
-    }
-
-    override fun onStop() {
-        super.onStop();
-        presenter.onStop()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        speaker.release()
     }
 
     override fun setUpWorkoutDisplay(title: String, imageApiName: String) {

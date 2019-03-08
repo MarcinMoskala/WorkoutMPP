@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3F568168C0B2907B2232AF64 /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6E3C57709EEA001D299ED91 /* Pods_iosApp.framework */; };
+		D39D79D1222EA3E200937051 /* iOSSpeaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39D79D0222EA3E200937051 /* iOSSpeaker.swift */; };
+		D39D79D3222EA48700937051 /* iOSTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39D79D2222EA48700937051 /* iOSTimer.swift */; };
 		D3F39439222C828F00708421 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3F39438222C828F00708421 /* Images.xcassets */; };
 		D3F3943E222C841000708421 /* app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F3943D222C841000708421 /* app.framework */; };
 		F861D7E1207FA40F0085E80D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F861D7E0207FA40F0085E80D /* AppDelegate.swift */; };
@@ -52,6 +54,8 @@
 /* Begin PBXFileReference section */
 		3342094974B4FDC0A8A32772 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
 		84BC218E6125B9F467507AA6 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
+		D39D79D0222EA3E200937051 /* iOSSpeaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSSpeaker.swift; sourceTree = "<group>"; };
+		D39D79D2222EA48700937051 /* iOSTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSTimer.swift; sourceTree = "<group>"; };
 		D3F39438222C828F00708421 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D3F3943B222C83F900708421 /* debugFramework */ = {isa = PBXFileReference; lastKnownFileType = folder; name = debugFramework; path = ../app/build/bin/ios/debugFramework; sourceTree = "<group>"; };
 		D3F3943D222C841000708421 /* app.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = app.framework; path = ../app/build/bin/ios/debugFramework/app.framework; sourceTree = "<group>"; };
@@ -148,6 +152,8 @@
 				F861D7E9207FA4100085E80D /* LaunchScreen.storyboard */,
 				F861D7EC207FA4100085E80D /* Info.plist */,
 				D3F39438222C828F00708421 /* Images.xcassets */,
+				D39D79D0222EA3E200937051 /* iOSSpeaker.swift */,
+				D39D79D2222EA48700937051 /* iOSTimer.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -306,10 +312,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Nuke/Nuke.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nuke.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,7 +346,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F861D7E3207FA40F0085E80D /* ViewController.swift in Sources */,
+				D39D79D3222EA48700937051 /* iOSTimer.swift in Sources */,
 				F861D7E1207FA40F0085E80D /* AppDelegate.swift in Sources */,
+				D39D79D1222EA3E200937051 /* iOSSpeaker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
