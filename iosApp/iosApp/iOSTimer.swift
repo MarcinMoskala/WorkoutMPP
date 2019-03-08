@@ -13,13 +13,14 @@ class iOSTimer: app.Timer {
     var timer: Foundation.Timer? = nil
     
     func start(seconds: Int32, onTick: @escaping (KotlinInt) -> KotlinUnit, onFinish: @escaping () -> KotlinUnit) {
+        stop()
         var secondsLeft = seconds
         _onTick = {
             secondsLeft -= 1
             if secondsLeft > 0 {
-                onTick(KotlinInt(int: secondsLeft))
+                _ = onTick(KotlinInt(int: secondsLeft))
             } else {
-                onFinish()
+                _ = onFinish()
             }
         }
         

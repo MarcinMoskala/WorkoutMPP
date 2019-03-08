@@ -41,23 +41,33 @@ class WorkoutPresenter(
         }
         view.setUpWorkoutDisplay(titleText, state.imageApiName)
         speaker.speak(titleText)
-        timer.stop()
-        if(state is DoneState) {
-            view.hideTimer()
-        } else {
-            setUpTimer(state.time)
-        }
+        setUpTimer(state)
     }
 
-    private fun setUpTimer(durationSeconds: Int?) {
+    private fun setUpTimer(state: WorkoutState) {
+        timer.stop()
+        val durationSeconds = when (state) {
+            DoneState -> {
+                view.hideTimer()
+                return
+            }
+            is ExerciseState -> state.exercise.time
+            is PrepareState -> EXERCISE_PREPARE_TIME
+        }
+
         durationSeconds ?: return
         view.updateTimer(nowSec = 0, endSec = durationSeconds)
-        timer.start(durationSeconds,
+        timer.start(
+            durationSeconds,
             onTick = { secondsUntilFinished ->
                 val seconds = durationSeconds - secondsUntilFinished
                 view.updateTimer(nowSec = seconds, endSec = durationSeconds)
             },
             onFinish = this::onNext
         )
+    }
+
+    companion object {
+        private const val EXERCISE_PREPARE_TIME = 8
     }
 }

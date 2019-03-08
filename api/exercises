@@ -1,0 +1,16 @@
+[
+    {"name": "Chest expanders", "img": "chest_expander.png", "time": 30},
+    {"name": "Rotating Toe Touches", "img": "rotating_toe_touches.jpg", "time": 30},
+    {"name": "Hips rotation", "img": "hips_rotation.png", "time": 20},
+    {"name": "Dynamic forward bend", "img": "forward_bend.png", "time": 30},
+    {"name": "Wrist warm up", "img": "wrist_warm_up.png", "time": 30},
+    {"name": "Wall push ups", "img": "wall_push_ups.png", "time": 30},
+    {"name": "Leg rise", "img": "leg_rise.gif", "time": 30},
+    {"name": "Superman hold", "img": "superman.png", "time": 30},
+    {"name": "Forward bend", "img": "forward_bend.png", "time": 30},
+    {"name": "Downward-Facing Dog", "img": "downward_dog.jpg", "time": 30},
+    {"name": "Biceps and Wrist Stretch", "img": "biceps_stretch.jpg", "time": 30},
+    {"name": "Other site Wrist Stretch", "img": "wrist_stretch_2.png", "time": 30},
+    {"name": "Shoulder Stretch", "img": "shoulder_stretch.jpg", "time": 30},
+    {"name": "Back Stretch", "img": "back_stretch.png", "time": 30}
+]
