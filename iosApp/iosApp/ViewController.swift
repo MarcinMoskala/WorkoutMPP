@@ -2,9 +2,9 @@ import UIKit
 import app
 import SnapKit
 
-class ViewController: UIViewController, WorkoutView {
+class ViewController: UIViewController {
     
-    private lazy var presenter = WorkoutPresenter(view: self, timer: iOSTimer(), speaker: iOSSpeaker())
+    private lazy var viewModel = WorkoutViewModel(timer: iOSTimer(), speaker: iOSSpeaker())
     
     lazy var titleView = UILabel()
     lazy var imageView = UIImageView()
@@ -18,24 +18,30 @@ class ViewController: UIViewController, WorkoutView {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        nextView.addTapGestureRecognizer { self.presenter.onNext() }
-        prevView.addTapGestureRecognizer { self.presenter.onPrevious() }
-        presenter.onStart()
+        viewModel.titleProp.addListenerTyped { (text: String) in
+            self.titleView.text = text
+        }
+        viewModel.imgApiUrlProp.addListenerTyped { (url: String) in
+            self.imageView.loadImage(url: ExercisesRepositoryKt.BASE_URL + "/images/" + url)
+        }
+        viewModel.progressProp.addListenerTyped { (progress: Int) in
+            self.progressView.progress = Float(progress) / 100
+        }
+        viewModel.timerTextProp.addListenerTyped { (text: String) in
+            self.timerView.text = text
+        }
+        nextView.addTapGestureRecognizer { self.viewModel.onNext() }
+        prevView.addTapGestureRecognizer { self.viewModel.onPrevious() }
+        viewModel.onStart()
     }
-    
-    func setUpWorkoutDisplay(title: String, imgApiName: String) {
-        titleView.text = title
-        imageView.loadImage(url: ExercisesRepositoryKt.BASE_URL + "/images/" + imgApiName)
-    }
-    
-    func hideTimer() {
-        progressView.progress = 0
-        timerView.text = ""
-    }
-    
-    func updateTimer(nowSec: Int32, endSec: Int32) {
-        timerView.text = String(endSec - nowSec)
-        progressView.progress = Float(nowSec) / Float(endSec)
+}
+
+extension MutableProp {
+    func addListenerTyped<T>(listener: @escaping (T)->()) {
+        addListener { elem in
+            listener(elem as! T)
+            return KotlinUnit()
+        }
     }
 }
 

@@ -1,12 +1,16 @@
 package sample
 
-class WorkoutPresenter(
-    private val view: WorkoutView,
+class WorkoutViewModel(
     private val timer: Timer,
     private val speaker: Speaker
 ) {
     private val states: List<WorkoutState> = getExercises().toStates()
     private var state: WorkoutState = states.first()
+
+    val titleProp = MutableProp("")
+    val imgApiUrlProp = MutableProp("")
+    val progressProp = MutableProp(0)
+    val timerTextProp = MutableProp("")
 
     fun onStart() {
         showState()
@@ -40,7 +44,8 @@ class WorkoutPresenter(
             is ExerciseState -> state.exercise.imgUrlName
             is DoneState -> "done.jpg"
         }
-        view.setUpWorkoutDisplay(titleText, imgApiName)
+        titleProp.set(titleText)
+        imgApiUrlProp.set(imgApiName)
         speaker.speak(titleText)
         setUpTimer(state)
     }
@@ -48,7 +53,8 @@ class WorkoutPresenter(
     private fun setUpTimer(state: WorkoutState) {
         val durationSeconds = when (state) {
             DoneState -> {
-                view.hideTimer()
+                progressProp.set(0)
+                timerTextProp.set("")
                 timer.stop()
                 return
             }
@@ -56,15 +62,20 @@ class WorkoutPresenter(
             is PrepareState -> EXERCISE_PREPARE_TIME
         }
 
-        view.updateTimer(nowSec = 0, endSec = durationSeconds)
+        updateTimer(nowSec = 0, endSec = durationSeconds)
         timer.start(
             durationSeconds,
             onTick = { secondsUntilFinished ->
                 val seconds = durationSeconds - secondsUntilFinished
-                view.updateTimer(nowSec = seconds, endSec = durationSeconds)
+                updateTimer(nowSec = seconds, endSec = durationSeconds)
             },
             onFinish = this::onNext
         )
+    }
+
+    fun updateTimer(nowSec: Int, endSec: Int) {
+        progressProp.set(nowSec * 100 / endSec)
+        timerTextProp.set("${endSec - nowSec}")
     }
 
     companion object {
