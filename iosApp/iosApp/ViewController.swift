@@ -18,17 +18,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        viewModel.titleProp.addListenerTyped { (text: String) in
-            self.titleView.text = text
-        }
+        titleView.bindText(with: viewModel.titleProp)
+        timerView.bindText(with: viewModel.timerTextProp)
+        
         viewModel.imgApiUrlProp.addListenerTyped { (url: String) in
             self.imageView.loadImage(url: ExercisesRepositoryKt.BASE_URL + "/images/" + url)
         }
         viewModel.progressProp.addListenerTyped { (progress: Int) in
             self.progressView.progress = Float(progress) / 100
-        }
-        viewModel.timerTextProp.addListenerTyped { (text: String) in
-            self.timerView.text = text
         }
         nextView.addTapGestureRecognizer { self.viewModel.onNext() }
         prevView.addTapGestureRecognizer { self.viewModel.onPrevious() }
@@ -41,6 +38,14 @@ extension MutableProp {
         addListener { elem in
             listener(elem as! T)
             return KotlinUnit()
+        }
+    }
+}
+
+extension UILabel {
+    func bindText(with prop: MutableProp) {
+        prop.addListenerTyped { (text: String) in
+            self.text = text
         }
     }
 }
