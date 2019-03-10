@@ -3,12 +3,12 @@ package sample
 class WorkoutViewModel(
     private val timer: Timer,
     private val speaker: Speaker
-) {
+) : ViewModel() {
     private val states: List<WorkoutState> = getExercises().toStates()
     private var state: WorkoutState = states.first()
 
     val titleProp = MutableProp("")
-    val imgApiUrlProp = MutableProp("")
+    val imgUrlProp = MutableProp("")
     val progressProp = MutableProp(0)
     val timerTextProp = MutableProp("")
 
@@ -45,7 +45,7 @@ class WorkoutViewModel(
             is DoneState -> "done.jpg"
         }
         titleProp.set(titleText)
-        imgApiUrlProp.set(imgApiName)
+        imgUrlProp.set("$BASE_URL/images/$imgApiName")
         speaker.speak(titleText)
         setUpTimer(state)
     }

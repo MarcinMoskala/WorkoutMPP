@@ -10,10 +10,14 @@ import Foundation
 import Nuke
 
 extension UIImageView {
-    func loadImage(url: String) {
-        Nuke.loadImage(
-            with: ImageRequest(url: URL(string: url)!),
-            into: self
-        )
+    func loadImage(url strUrl: String?) {
+        if let strUrl = strUrl {
+            if let url = URL(string: strUrl) {
+                Nuke.loadImage(
+                    with: ImageRequest(url: url),
+                    into: self
+                )
+            }
+        }
     }
 }

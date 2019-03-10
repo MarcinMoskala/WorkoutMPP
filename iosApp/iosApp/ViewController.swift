@@ -21,8 +21,8 @@ class ViewController: UIViewController {
         titleView.bindText(with: viewModel.titleProp)
         timerView.bindText(with: viewModel.timerTextProp)
         
-        viewModel.imgApiUrlProp.addListenerTyped { (url: String) in
-            self.imageView.loadImage(url: ExercisesRepositoryKt.BASE_URL + "/images/" + url)
+        viewModel.imgUrlProp.addListenerTyped { (url: String) in
+            self.imageView.loadImage(url: url)
         }
         viewModel.progressProp.addListenerTyped { (progress: Int) in
             self.progressView.progress = Float(progress) / 100

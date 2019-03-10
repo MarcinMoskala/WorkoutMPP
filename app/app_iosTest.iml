@@ -5,8 +5,8 @@
       <configuration version="3" platform="Native " useProjectSettings="false" isTestModule="true" externalProjectId=":app">
         <sourceSets>
           <sourceSet>app_commonTest</sourceSet>
-          <sourceSet>app_commonMain</sourceSet>
           <sourceSet>app_iosMain</sourceSet>
+          <sourceSet>app_commonMain</sourceSet>
         </sourceSets>
         <newMppModelJpsModuleKind>COMPILATION_AND_SOURCE_SET_HOLDER</newMppModelJpsModuleKind>
         <compilerSettings />
@@ -1096,8 +1096,8 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="app_iosMain" scope="TEST" />
     <orderEntry type="module" module-name="app_commonMain" scope="TEST" />
+    <orderEntry type="module" module-name="app_iosMain" scope="TEST" />
   </component>
   <component name="TestModuleProperties" production-module="app_iosMain" />
 </module>

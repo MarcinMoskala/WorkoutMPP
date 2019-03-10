@@ -1,28 +1,26 @@
 package sample
 
+import android.databinding.DataBindingUtil
+import android.databinding.ObservableField
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import sample.databinding.ActivityMainBinding
+
+actual typealias ViewModel = android.arch.lifecycle.ViewModel
+actual typealias MutableProp<T> = ObservableField<T>
 
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel by lazy { WorkoutViewModel(AndroidTimer(), AndroidSpeaker(this)) }
+    private val viewModel by lazy {
+        WorkoutViewModel(AndroidTimer(), AndroidSpeaker(this))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        viewModel.apply {
-            titleProp.addListener { titleView.text = it }
-            imgApiUrlProp.addListener {
-                imageView.loadImage(url = "$BASE_URL/images/$it")
-            }
-            progressProp.addListener { progressBar.progress = it }
-            timerTextProp.addListener { timerView.text = it }
-        }
-
-        nextButton.setOnClickListener { viewModel.onNext() }
-        prevButton.setOnClickListener { viewModel.onPrevious() }
+        DataBindingUtil
+            .setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+            .vm = viewModel
         viewModel.onStart()
     }
 }
-
