@@ -1,7 +1,6 @@
 import UIKit
 import app
 import SnapKit
-import Nuke
 
 class ViewController: UIViewController, WorkoutView {
     
@@ -18,7 +17,31 @@ class ViewController: UIViewController, WorkoutView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupView()
+        nextView.addTapGestureRecognizer { self.presenter.onNext() }
+        prevView.addTapGestureRecognizer { self.presenter.onPrevious() }
+        presenter.onStart()
+    }
+    
+    func setUpWorkoutDisplay(title: String, imgApiName: String) {
+        titleView.text = title
+        imageView.loadImage(url: ExercisesRepositoryKt.BASE_URL + "/images/" + imgApiName)
+    }
+    
+    func hideTimer() {
+        progressView.progress = 0
+        timerView.text = ""
+    }
+    
+    func updateTimer(nowSec: Int32, endSec: Int32) {
+        timerView.text = String(endSec - nowSec)
+        progressView.progress = Float(nowSec) / Float(endSec)
+    }
+}
+
+extension ViewController {
+    
+    func setupView() {
         view.backgroundColor = UIColor.white
         
         titleView.textAlignment = .center
@@ -84,46 +107,12 @@ class ViewController: UIViewController, WorkoutView {
             make.centerX.centerY.equalToSuperview()
             make.height.width.equalTo(40)
         }
-
+        
         nextView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
             make.height.width.equalTo(40)
         }
-
+        
         view.setNeedsUpdateConstraints()
-        nextView.isUserInteractionEnabled = true
-        nextView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.nextClicked)))
-        prevView.isUserInteractionEnabled = true
-        prevView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.prevClicked)))
-        presenter.onStart()
-    }
-    
-    @objc func nextClicked() {
-        presenter.onNext()
-    }
-    
-    @objc func prevClicked() {
-        presenter.onPrevious()
-    }
-    
-    func setUpWorkoutDisplay(title: String, imageApiName: String) {
-        titleView.text = title
-        Nuke.loadImage(
-            with: ImageRequest(
-                url: URL(string: "https://raw.githubusercontent.com/MarcinMoskala/WorkoutMPP/master/api/images/" + imageApiName)!,
-                targetSize: ImageDecompressor.targetSize(for: imageView),
-                contentMode: .aspectFill),
-            into: imageView
-        )
-    }
-    
-    func hideTimer() {
-        progressView.progress = 0
-        timerView.text = ""
-    }
-    
-    func updateTimer(nowSec: Int32, endSec: Int32) {
-        timerView.text = String(endSec - nowSec)
-        progressView.progress = Float(nowSec) / Float(endSec)
     }
 }

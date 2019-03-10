@@ -11,19 +11,11 @@ import AVKit
 import AVFoundation
 
 class iOSSpeaker: Speaker {
-    let synthesizer = AVSpeechSynthesizer()
+    private let synthesizer = AVSpeechSynthesizer()
     
     func speak(text: String) {
         synthesizer.stopSpeaking(at: .word)
         let utterance = AVSpeechUtterance(string: text)
         synthesizer.speak(utterance)
-    }
-    
-    func playWhistle() {
-        
-    }
-    
-    func playEndSound() {
-        
     }
 }

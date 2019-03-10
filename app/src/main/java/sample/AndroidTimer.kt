@@ -6,6 +6,7 @@ class AndroidTimer : Timer {
     var timer: CountDownTimer? = null
 
     override fun start(seconds: Int, onTick: (secondsUntilFinished: Int) -> Unit, onFinish: () -> Unit) {
+        stop()
         timer = object : CountDownTimer(seconds * 1000L, 100) {
             override fun onTick(millisUntilFinished: Long) {
                 onTick.invoke((millisUntilFinished / 1000).toInt())

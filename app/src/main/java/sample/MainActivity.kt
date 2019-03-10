@@ -18,12 +18,9 @@ class MainActivity : AppCompatActivity(), WorkoutView {
         presenter.onStart()
     }
 
-    override fun setUpWorkoutDisplay(title: String, imageApiName: String) {
+    override fun setUpWorkoutDisplay(title: String, imgApiName: String) {
         textView.text = title
-        Glide.with(this)
-            .load("${ExercisesRepository.BASE_URL}/images/$imageApiName")
-            .fitCenter()
-            .into(imageView)
+        imageView.loadImage(url = "$BASE_URL/images/$imgApiName")
     }
 
     override fun hideTimer() {

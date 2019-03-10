@@ -4,9 +4,9 @@
     <facet type="kotlin-language" name="Kotlin">
       <configuration version="3" platform="Native " useProjectSettings="false" isTestModule="true" externalProjectId=":app">
         <sourceSets>
-          <sourceSet>app_iosMain</sourceSet>
           <sourceSet>app_commonTest</sourceSet>
           <sourceSet>app_commonMain</sourceSet>
+          <sourceSet>app_iosMain</sourceSet>
         </sourceSets>
         <newMppModelJpsModuleKind>COMPILATION_AND_SOURCE_SET_HOLDER</newMppModelJpsModuleKind>
         <compilerSettings />
@@ -39,7 +39,7 @@
     <content url="file://$MODULE_DIR$/src/iosTest/resources" />
     <orderEntry type="jdk" jdkName="Kotlin SDK" jdkType="KotlinSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="app_iosMain" scope="TEST" />
+    <orderEntry type="module" module-name="app_commonTest" scope="TEST" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-test-annotations-common:1.3.30-eap-11" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-test-common:1.3.30-eap-11" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.3.30-eap-11" level="project" />
@@ -1096,8 +1096,8 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module" module-name="app_iosMain" scope="TEST" />
     <orderEntry type="module" module-name="app_commonMain" scope="TEST" />
-    <orderEntry type="module" module-name="app_commonTest" scope="TEST" />
   </component>
   <component name="TestModuleProperties" production-module="app_iosMain" />
 </module>

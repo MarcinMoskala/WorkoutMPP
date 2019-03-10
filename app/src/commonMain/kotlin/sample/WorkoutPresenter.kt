@@ -5,13 +5,10 @@ class WorkoutPresenter(
     private val timer: Timer,
     private val speaker: Speaker
 ) {
-    private val repo = ExercisesRepository()
-    private lateinit var states: List<WorkoutState>
-    private lateinit var state: WorkoutState
+    private val states: List<WorkoutState> = getExercises().toStates()
+    private var state: WorkoutState = states.first()
 
     fun onStart() {
-        states = repo.getExercises().toStates()
-        state = states.first()
         showState()
     }
 
@@ -32,30 +29,33 @@ class WorkoutPresenter(
     }
 
     private fun showState() {
-        val titleText: String
         val state = state
-        titleText = when (state) {
+        val titleText = when (state) {
             is PrepareState -> "Prepare for " + state.exercise.nameText
             is ExerciseState -> state.exercise.nameText
             is DoneState -> "Done"
         }
-        view.setUpWorkoutDisplay(titleText, state.imageApiName)
+        val imgApiName = when (state) {
+            is PrepareState -> state.exercise.imgUrlName
+            is ExerciseState -> state.exercise.imgUrlName
+            is DoneState -> "done.jpg"
+        }
+        view.setUpWorkoutDisplay(titleText, imgApiName)
         speaker.speak(titleText)
         setUpTimer(state)
     }
 
     private fun setUpTimer(state: WorkoutState) {
-        timer.stop()
         val durationSeconds = when (state) {
             DoneState -> {
                 view.hideTimer()
+                timer.stop()
                 return
             }
             is ExerciseState -> state.exercise.time
             is PrepareState -> EXERCISE_PREPARE_TIME
         }
 
-        durationSeconds ?: return
         view.updateTimer(nowSec = 0, endSec = durationSeconds)
         timer.start(
             durationSeconds,

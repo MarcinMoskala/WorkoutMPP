@@ -1,20 +1,12 @@
 package sample
 
-internal sealed class WorkoutState {
-    abstract val imageApiName: String
-}
+internal sealed class WorkoutState
 
-internal object DoneState : WorkoutState() {
-    override val imageApiName: String = "done.jpg"
-}
+internal object DoneState : WorkoutState()
 
-internal class ExerciseState(val exercise: Exercise) : WorkoutState() {
-    override val imageApiName: String get() = exercise.imgUrlName
-}
+internal class ExerciseState(val exercise: Exercise) : WorkoutState()
 
-internal class PrepareState(val exercise: Exercise) : WorkoutState() {
-    override val imageApiName: String get() = exercise.imgUrlName
-}
+internal class PrepareState(val exercise: Exercise) : WorkoutState()
 
 internal fun List<Exercise>.toStates(): List<WorkoutState> =
     flatMap { exercise -> listOf(PrepareState(exercise), ExerciseState(exercise)) } + DoneState

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3F568168C0B2907B2232AF64 /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6E3C57709EEA001D299ED91 /* Pods_iosApp.framework */; };
+		D31361802235286100A0EFC5 /* OnClick.swift in Sources */ = {isa = PBXBuildFile; fileRef = D313617F2235286100A0EFC5 /* OnClick.swift */; };
+		D313618222356EBD00A0EFC5 /* ShowImageFromUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D313618122356EBD00A0EFC5 /* ShowImageFromUrl.swift */; };
 		D39D79D1222EA3E200937051 /* iOSSpeaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39D79D0222EA3E200937051 /* iOSSpeaker.swift */; };
 		D39D79D3222EA48700937051 /* iOSTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39D79D2222EA48700937051 /* iOSTimer.swift */; };
 		D3F39439222C828F00708421 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3F39438222C828F00708421 /* Images.xcassets */; };
@@ -54,6 +56,8 @@
 /* Begin PBXFileReference section */
 		3342094974B4FDC0A8A32772 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
 		84BC218E6125B9F467507AA6 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
+		D313617F2235286100A0EFC5 /* OnClick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnClick.swift; sourceTree = "<group>"; };
+		D313618122356EBD00A0EFC5 /* ShowImageFromUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowImageFromUrl.swift; sourceTree = "<group>"; };
 		D39D79D0222EA3E200937051 /* iOSSpeaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSSpeaker.swift; sourceTree = "<group>"; };
 		D39D79D2222EA48700937051 /* iOSTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSTimer.swift; sourceTree = "<group>"; };
 		D3F39438222C828F00708421 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -154,6 +158,8 @@
 				D3F39438222C828F00708421 /* Images.xcassets */,
 				D39D79D0222EA3E200937051 /* iOSSpeaker.swift */,
 				D39D79D2222EA48700937051 /* iOSTimer.swift */,
+				D313617F2235286100A0EFC5 /* OnClick.swift */,
+				D313618122356EBD00A0EFC5 /* ShowImageFromUrl.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -236,9 +242,11 @@
 				TargetAttributes = {
 					F861D7DC207FA40F0085E80D = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1010;
 					};
 					F861D7F0207FA4100085E80D = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1010;
 						TestTargetID = F861D7DC207FA40F0085E80D;
 					};
 					F861D804207FA4200085E80D = {
@@ -345,10 +353,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D313618222356EBD00A0EFC5 /* ShowImageFromUrl.swift in Sources */,
 				F861D7E3207FA40F0085E80D /* ViewController.swift in Sources */,
 				D39D79D3222EA48700937051 /* iOSTimer.swift in Sources */,
 				F861D7E1207FA40F0085E80D /* AppDelegate.swift in Sources */,
 				D39D79D1222EA3E200937051 /* iOSSpeaker.swift in Sources */,
+				D31361802235286100A0EFC5 /* OnClick.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,7 +540,7 @@
 				OTHER_LDFLAGS = "-v";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.iosApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7";
 			};
@@ -553,7 +563,7 @@
 				OTHER_LDFLAGS = "-v";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.iosApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7";
 			};
@@ -573,7 +583,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.iosAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iosApp.app/iosApp";
 			};
@@ -593,7 +603,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.iosAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iosApp.app/iosApp";
 			};
