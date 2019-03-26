@@ -17,17 +17,17 @@ class WorkoutViewModel(
     }
 
     fun onNext() {
-        val nextIndex = states.indexOf(state) + 1
-        if (nextIndex in states.indices) {
-            state = states[nextIndex]
+        val nextState = states.getOrNull(states.indexOf(state) + 1)
+        if (nextState != null) {
+            state = nextState
             showState(state)
         }
     }
 
     fun onPrevious() {
-        val prevIndex = states.indexOf(state) - 1
-        if (prevIndex in states.indices) {
-            state = states[prevIndex]
+        val nextState = states.getOrNull(states.indexOf(state) - 1)
+        if (nextState != null) {
+            state = nextState
             showState(state)
         }
     }
