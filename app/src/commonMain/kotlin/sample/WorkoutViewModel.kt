@@ -9,7 +9,7 @@ class WorkoutViewModel(
 
     val titleProp = MutableProp("")
     val imgApiUrlProp = MutableProp("")
-    val progressProp = MutableProp(0)
+    val progressProp = MutableProp(0F)
     val timerTextProp = MutableProp("")
 
     fun onStart() {
@@ -52,7 +52,7 @@ class WorkoutViewModel(
     private fun setUpTimer(state: WorkoutState) {
         val durationSeconds = when (state) {
             DoneState -> {
-                progressProp.set(0)
+                progressProp.set(0F)
                 timerTextProp.set("")
                 timer.stop()
                 return
@@ -61,23 +61,18 @@ class WorkoutViewModel(
             is PrepareState -> EXERCISE_PREPARE_TIME
         }
 
-        view.updateTimer(secLeft = durationSeconds, progress = 0F)
         timer.start(
             durationSeconds,
             onTick = { secondsLeft ->
+                timerTextProp.set("$secondsLeft")
                 val progress = (durationSeconds - secondsLeft).toFloat() / durationSeconds
-                view.updateTimer(secLeft = seconds, progress = durationSeconds)
+                progressProp.set(progress)
             },
             onFinish = this::onNext
         )
     }
 
-    private fun updateTimer(secLeft: Int, progress: Float) {
-        progressProp.set(progress)
-        timerTextProp.set("$secLeft")
-    }
-
     companion object {
-        private const val EXERCISE_PREPARE_TIME = 8
+        const val EXERCISE_PREPARE_TIME = 8
     }
 }

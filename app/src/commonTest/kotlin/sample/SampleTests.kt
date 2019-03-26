@@ -1,42 +1,29 @@
 package sample
 
 import kotlin.test.Test
-import kotlin.test.assertTrue
 import kotlin.test.assertEquals
 import io.mockk.*
-import org.junit.*
 
 class WorkoutViewModelTest {
 
     private val firstExercise = getExercises().first()
-    private val prepTime = WorkoutPresenter.EXERCISE_PREPARE_TIME
+    private val prepTime = WorkoutViewModel.EXERCISE_PREPARE_TIME
 
     @Test
     fun singleExerciseTimerTest() {
         val timer = FakeTimer()
-        val speaker: Speaker = mockk(relaxed = true)
-        val view: WorkoutView = mockk(relaxed = true)
-        val presenter = WorkoutPresenter(view, timer, speaker)
+        val speaker = FakeSpeaker()
+        val vm = WorkoutViewModel(timer, speaker)
 
-        presenter.onStart()
-        timer.onTick(prepTime - 1)
-        timer.onTick(prepTime - 2)
-        presenter.onNext()
-        timer.onTick(firstExercise.time - 1)
+        vm.onStart()
+        val prepareText = "Prepare for " + firstExercise.nameText
+        assertEquals(prepareText, vm.titleProp.current)
+        assertEquals(firstExercise.imgUrlName, vm.imgApiUrlProp.current)
+        assertEquals(prepareText, speaker.spokenTexts.last())
+        assertEquals(0F, vm.progressProp.current)
+        assertEquals(firstExercise.time.toString(), vm.timerTextProp.current)
 
-        verify {
-            val prepareText = "Prepare for " + firstExercise.nameText
-            view.setUpWorkoutDisplay(prepareText, firstExercise.imgUrlName)
-            speaker.speak(prepareText)
-            view.updateTimer(prepTime, 0F)
-            view.updateTimer(prepTime - 1, 1F / prepTime)
-            view.updateTimer(prepTime - 2, 2F / prepTime)
-
-            view.setUpWorkoutDisplay(firstExercise.nameText, firstExercise.imgUrlName)
-            speaker.speak(firstExercise.nameText)
-            view.updateTimer(firstExercise.time, 0F)
-            view.updateTimer(firstExercise.time - 1, 1F / firstExercise.time)
-        }
+        // ...
     }
 
     class FakeTimer(): Timer {
@@ -53,6 +40,15 @@ class WorkoutViewModelTest {
 
         override fun stop() {
             // no-op
+        }
+    }
+
+    class FakeSpeaker: Speaker {
+        var spokenTexts = listOf<String>()
+            private set
+
+        override fun speak(text: String) {
+            spokenTexts = spokenTexts + text
         }
     }
 }
