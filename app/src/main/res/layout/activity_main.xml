@@ -96,7 +96,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="8dp"
-                android:src="@drawable/ic_next"
+                android:src="@drawable/next"
                 android:onClick="@{()->vm.onNext()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -109,7 +109,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:onClick="@{()->vm.onPrevious()}"
-                android:src="@drawable/ic_prev"
+                android:src="@drawable/prev"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/progressBar" android:layout_marginLeft="8dp"/>
