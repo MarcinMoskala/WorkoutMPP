@@ -24,8 +24,8 @@ class ViewController: UIViewController {
         viewModel.imgUrlProp.addListenerTyped { (url: String) in
             self.imageView.loadImage(url: url)
         }
-        viewModel.progressProp.addListenerTyped { (progress: Float) in
-            self.progressView.progress = progress
+        viewModel.progressProp.addListenerTyped { (progress: Int32) in
+            self.progressView.progress = Float(progress) / 100
         }
         nextView.addTapGestureRecognizer { self.viewModel.onNext() }
         prevView.addTapGestureRecognizer { self.viewModel.onPrevious() }

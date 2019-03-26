@@ -1,9 +1,8 @@
 package sample
 
 actual class MutableProp<T> actual constructor(current: T) {
-    var current = current
-        private set
-    var listeners = listOf<(T)->Unit>()
+    private var current = current
+    private var listeners = listOf<(T)->Unit>()
 
     actual fun set(elem: T) {
         current = elem
@@ -14,4 +13,6 @@ actual class MutableProp<T> actual constructor(current: T) {
         listeners += listener
         listener(current)
     }
+
+    actual fun get(): T = current
 }

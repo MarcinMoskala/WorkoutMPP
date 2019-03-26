@@ -17,11 +17,10 @@ class WorkoutViewModelTest {
 
         vm.onStart()
         val prepareText = "Prepare for " + firstExercise.nameText
-        assertEquals(prepareText, vm.titleProp.current)
-        assertEquals(firstExercise.imgUrlName, vm.imgApiUrlProp.current)
+        assertEquals(prepareText, vm.titleProp.get())
         assertEquals(prepareText, speaker.spokenTexts.last())
-        assertEquals(0F, vm.progressProp.current)
-        assertEquals(firstExercise.time.toString(), vm.timerTextProp.current)
+        assertEquals(0, vm.progressProp.get())
+        assertEquals(firstExercise.time.toString(), vm.timerTextProp.get())
 
         // ...
     }
