@@ -14,6 +14,7 @@ class iOSTimer: app.Timer {
     
     func start(seconds: Int32, onTick: @escaping (KotlinInt) -> KotlinUnit, onFinish: @escaping () -> KotlinUnit) {
         stop()
+        _ = onTick(KotlinInt(int: seconds))
         var secondsLeft = seconds
         _onTick = {
             secondsLeft -= 1

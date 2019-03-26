@@ -61,20 +61,20 @@ class WorkoutViewModel(
             is PrepareState -> EXERCISE_PREPARE_TIME
         }
 
-        updateTimer(nowSec = 0, endSec = durationSeconds)
+        view.updateTimer(secLeft = durationSeconds, progress = 0F)
         timer.start(
             durationSeconds,
-            onTick = { secondsUntilFinished ->
-                val seconds = durationSeconds - secondsUntilFinished
-                updateTimer(nowSec = seconds, endSec = durationSeconds)
+            onTick = { secondsLeft ->
+                val progress = (durationSeconds - secondsLeft).toFloat() / durationSeconds
+                view.updateTimer(secLeft = seconds, progress = durationSeconds)
             },
             onFinish = this::onNext
         )
     }
 
-    private fun updateTimer(nowSec: Int, endSec: Int) {
-        progressProp.set(nowSec * 100 / endSec)
-        timerTextProp.set("${endSec - nowSec}")
+    private fun updateTimer(secLeft: Int, progress: Float) {
+        progressProp.set(progress)
+        timerTextProp.set("$secLeft")
     }
 
     companion object {
