@@ -9,7 +9,7 @@ class WorkoutViewModel(
 
     val titleProp = MutableProp("")
     val imgApiUrlProp = MutableProp("")
-    val progressProp = MutableProp(0F)
+    val progressProp = MutableProp(0)
     val timerTextProp = MutableProp("")
 
     fun onStart() {
@@ -52,7 +52,7 @@ class WorkoutViewModel(
     private fun setUpTimer(state: WorkoutState) {
         val durationSeconds = when (state) {
             DoneState -> {
-                progressProp.set(0F)
+                progressProp.set(0)
                 timerTextProp.set("")
                 timer.stop()
                 return
@@ -65,7 +65,7 @@ class WorkoutViewModel(
             durationSeconds,
             onTick = { secondsLeft ->
                 timerTextProp.set("$secondsLeft")
-                val progress = (durationSeconds - secondsLeft).toFloat() / durationSeconds
+                val progress = 100 * (durationSeconds - secondsLeft) / durationSeconds
                 progressProp.set(progress)
             },
             onFinish = this::onNext

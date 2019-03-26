@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
             imgApiUrlProp.addListener {
                 imageView.loadImage(url = "$BASE_URL/images/$it")
             }
-            progressProp.addListener { progressBar.progress = (100 * it).toInt() }
+            progressProp.addListener { progressBar.progress = 100 * it }
             timerTextProp.addListener { timerView.text = it }
         }
 
