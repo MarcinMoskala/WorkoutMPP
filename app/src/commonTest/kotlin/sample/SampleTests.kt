@@ -7,7 +7,6 @@ import io.mockk.*
 class WorkoutViewModelTest {
 
     private val firstExercise = getExercises().first()
-    private val prepTime = WorkoutViewModel.EXERCISE_PREPARE_TIME
 
     @Test
     fun singleExerciseTimerTest() {
