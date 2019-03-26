@@ -28,9 +28,9 @@ class MainActivity : AppCompatActivity(), WorkoutView {
         progressBar.progress = 0
     }
 
-    override fun updateTimer(secLeft: Int, progress: Float) {
+    override fun updateTimer(secLeft: Int, progress: Int) {
         timerView.text = "$secLeft"
-        progressBar.progress = (progress * 100).toInt()
+        progressBar.progress = progress
     }
 }
 

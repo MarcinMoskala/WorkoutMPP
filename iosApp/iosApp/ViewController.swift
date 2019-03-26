@@ -33,9 +33,9 @@ class ViewController: UIViewController, WorkoutView {
         timerView.text = ""
     }
     
-    func updateTimer(secLeft: Int32, progress: Float) {
+    func updateTimer(secLeft: Int32, progress: Int32) {
         timerView.text = String(secLeft)
-        progressView.progress = progress
+        progressView.progress = Float(progress) / 100
     }
 
 }

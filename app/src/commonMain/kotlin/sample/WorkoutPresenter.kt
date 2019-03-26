@@ -58,7 +58,7 @@ class WorkoutPresenter(
         timer.start(
             durationSeconds,
             onTick = { secondsLeft ->
-                val progress = (durationSeconds - secondsLeft).toFloat() / durationSeconds
+                val progress = 100 * (durationSeconds - secondsLeft) / durationSeconds
                 view.updateTimer(secLeft = secondsLeft, progress = progress)
             },
             onFinish = this::onNext
