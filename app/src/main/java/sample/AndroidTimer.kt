@@ -7,9 +7,10 @@ class AndroidTimer : Timer {
 
     override fun start(seconds: Int, onTick: (secondsUntilFinished: Int) -> Unit, onFinish: () -> Unit) {
         stop()
+        onTick(seconds)
         timer = object : CountDownTimer(seconds * 1000L, 100) {
             override fun onTick(millisUntilFinished: Long) {
-                onTick.invoke((millisUntilFinished / 1000).toInt())
+                onTick((millisUntilFinished / 1000).toInt())
             }
 
             override fun onFinish() {

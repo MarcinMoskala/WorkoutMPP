@@ -55,18 +55,17 @@ class WorkoutPresenter(
             is PrepareState -> EXERCISE_PREPARE_TIME
         }
 
-        view.updateTimer(nowSec = 0, endSec = durationSeconds)
         timer.start(
             durationSeconds,
-            onTick = { secondsUntilFinished ->
-                val seconds = durationSeconds - secondsUntilFinished
-                view.updateTimer(nowSec = seconds, endSec = durationSeconds)
+            onTick = { secondsLeft ->
+                val progress = (durationSeconds - secondsLeft).toFloat() / durationSeconds
+                view.updateTimer(secLeft = secondsLeft, progress = progress)
             },
             onFinish = this::onNext
         )
     }
 
     companion object {
-        private const val EXERCISE_PREPARE_TIME = 8
+        const val EXERCISE_PREPARE_TIME = 8
     }
 }
