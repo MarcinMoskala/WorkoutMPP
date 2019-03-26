@@ -13,27 +13,26 @@ class WorkoutViewModel(
     val timerTextProp = MutableProp("")
 
     fun onStart() {
-        showState()
+        showState(state)
     }
 
     fun onNext() {
-        val position = states.indexOf(state)
-        if (position < states.lastIndex) {
-            state = states[position + 1]
-            showState()
+        val nextIndex = states.indexOf(state) + 1
+        if (nextIndex in states.indices) {
+            state = states[nextIndex]
+            showState(state)
         }
     }
 
     fun onPrevious() {
-        val position = states.indexOf(state)
-        if (position > 0) {
-            state = states[position - 1]
-            showState()
+        val prevIndex = states.indexOf(state) - 1
+        if (prevIndex in states.indices) {
+            state = states[prevIndex]
+            showState(state)
         }
     }
 
-    private fun showState() {
-        val state = state
+    private fun showState(state: WorkoutState) {
         val titleText = when (state) {
             is PrepareState -> "Prepare for " + state.exercise.nameText
             is ExerciseState -> state.exercise.nameText
