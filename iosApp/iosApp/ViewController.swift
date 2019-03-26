@@ -33,10 +33,11 @@ class ViewController: UIViewController, WorkoutView {
         timerView.text = ""
     }
     
-    func updateTimer(nowSec: Int32, endSec: Int32) {
-        timerView.text = String(endSec - nowSec)
-        progressView.progress = Float(nowSec) / Float(endSec)
+    func updateTimer(secLeft: Int32, progress: Float) {
+        timerView.text = String(secLeft)
+        progressView.progress = progress
     }
+
 }
 
 extension ViewController {

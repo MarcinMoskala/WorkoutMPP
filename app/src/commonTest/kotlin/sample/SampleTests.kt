@@ -8,8 +8,8 @@ import org.junit.*
 
 class WorkoutViewModelTest {
 
-    val firstExercise = getExercises().first()
-    val prepTime = WorkoutPresenter.EXERCISE_PREPARE_TIME
+    private val firstExercise = getExercises().first()
+    private val prepTime = WorkoutPresenter.EXERCISE_PREPARE_TIME
 
     @Test
     fun singleExerciseTimerTest() {
