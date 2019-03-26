@@ -72,7 +72,7 @@ class WorkoutViewModel(
         )
     }
 
-    fun updateTimer(nowSec: Int, endSec: Int) {
+    private fun updateTimer(nowSec: Int, endSec: Int) {
         progressProp.set(nowSec * 100 / endSec)
         timerTextProp.set("${endSec - nowSec}")
     }
