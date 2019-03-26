@@ -24,3 +24,4 @@ class MainActivity : AppCompatActivity() {
         viewModel.onStart()
     }
 }
+

@@ -31,9 +31,7 @@
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
-    <content url="file://$MODULE_DIR$/src/iosMain/kotlin">
-      <sourceFolder url="file://$MODULE_DIR$/src/iosMain/kotlin" type="kotlin-source" />
-    </content>
+    <content url="file://$MODULE_DIR$/src/iosMain/kotlin" />
     <content url="file://$MODULE_DIR$/src/iosMain/resources" />
     <orderEntry type="jdk" jdkName="Kotlin SDK" jdkType="KotlinSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
