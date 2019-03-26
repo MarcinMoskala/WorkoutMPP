@@ -24,12 +24,11 @@ class MainActivity : AppCompatActivity(), WorkoutView {
     }
 
     override fun hideTimer() {
-        progressBar.visibility = View.GONE
         timerView.text = ""
+        progressBar.progress = 0
     }
 
     override fun updateTimer(nowSec: Int, endSec: Int) {
-        progressBar.visibility = View.VISIBLE
         timerView.text = "${endSec - nowSec}"
         progressBar.progress = nowSec * 100 / endSec
     }
