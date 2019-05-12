@@ -14,5 +14,5 @@ actual class MutableProp<T> actual constructor(current: T) {
         listener(current)
     }
 
-    actual fun get(): T = current
+    actual fun get(): T? = current
 }
