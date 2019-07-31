@@ -1,8 +1,5 @@
 package sample
 
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
-import android.content.Context
 import android.databinding.DataBindingUtil
 import android.databinding.ObservableField
 import android.os.Bundle

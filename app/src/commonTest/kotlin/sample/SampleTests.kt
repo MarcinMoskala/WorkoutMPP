@@ -2,7 +2,6 @@ package sample
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import io.mockk.*
 
 class WorkoutViewModelTest {
 
@@ -25,9 +24,9 @@ class WorkoutViewModelTest {
     }
 
     class FakeTimer(): Timer {
-        var seconds = 0
-        var onTick: (Int) -> Unit = {}
-        var onFinish: () -> Unit = {}
+        private var seconds = 0
+        private var onTick: (Int) -> Unit = {}
+        private var onFinish: () -> Unit = {}
 
         override fun start(seconds: Int, onTick: (Int) -> Unit, onFinish: () -> Unit) {
             this.seconds = seconds

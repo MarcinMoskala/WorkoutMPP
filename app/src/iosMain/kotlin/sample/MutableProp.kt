@@ -1,7 +1,8 @@
+@file:Suppress("unused") // Used from Swift
+
 package sample
 
-actual class MutableProp<T> actual constructor(current: T) {
-    private var current = current
+actual class MutableProp<T> actual constructor(private var current: T) {
     private var listeners = listOf<(T)->Unit>()
 
     actual fun set(elem: T) {

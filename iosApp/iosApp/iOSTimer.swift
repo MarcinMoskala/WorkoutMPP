@@ -12,7 +12,7 @@ class iOSTimer: app.Timer {
     
     var timer: Foundation.Timer? = nil
     
-    func start(seconds: Int32, onTick: @escaping (KotlinInt) -> KotlinUnit, onFinish: @escaping () -> KotlinUnit) {
+    func start(seconds: Int32, onTick: @escaping (KotlinInt) -> (), onFinish: @escaping () -> ()) {
         stop()
         _ = onTick(KotlinInt(int: seconds))
         var secondsLeft = seconds
@@ -24,7 +24,7 @@ class iOSTimer: app.Timer {
                 _ = onFinish()
             }
         }
-        
+
         timer = Foundation.Timer.scheduledTimer(
             timeInterval: 1,
             target: self,

@@ -1,7 +1,5 @@
 package sample
 
-import kotlin.jvm.JvmName
-
 fun getExercises(): List<Exercise> = listOf(
     Exercise("chest_expander.png", "Chest expanders"),
     Exercise("rotating_toe_touches.jpg", "Rotating Toe Touches"),
@@ -20,4 +18,4 @@ fun getExercises(): List<Exercise> = listOf(
     //...
 )
 
-val BASE_URL = "https://raw.githubusercontent.com/MarcinMoskala/WorkoutMPP/master/api/"
+const val BASE_URL = "https://raw.githubusercontent.com/MarcinMoskala/WorkoutMPP/master/api/"

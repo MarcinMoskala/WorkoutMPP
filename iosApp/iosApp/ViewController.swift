@@ -20,12 +20,12 @@ class ViewController: UIViewController {
         setupView()
         titleView.bindText(with: viewModel.titleProp)
         timerView.bindText(with: viewModel.timerTextProp)
-        
-        viewModel.imgUrlProp.addListenerTyped { (url: String) in
-            self.imageView.loadImage(url: url)
+
+        viewModel.imgUrlProp.addListener { (url) in
+            self.imageView.loadImage(url: String(url ?? ""))
         }
-        viewModel.progressProp.addListenerTyped { (progress: Int32) in
-            self.progressView.progress = Float(progress) / 100
+        viewModel.progressProp.addListener { (progress) in
+            self.progressView.progress = Float(progress ?? 0) / 100
         }
         nextView.addTapGestureRecognizer { self.viewModel.onNext() }
         prevView.addTapGestureRecognizer { self.viewModel.onPrevious() }
@@ -33,19 +33,10 @@ class ViewController: UIViewController {
     }
 }
 
-extension MutableProp {
-    func addListenerTyped<T>(listener: @escaping (T)->()) {
-        addListener { elem in
-            listener(elem as! T)
-            return KotlinUnit()
-        }
-    }
-}
-
 extension UILabel {
-    func bindText(with prop: MutableProp) {
-        prop.addListenerTyped { (text: String) in
-            self.text = text
+    func bindText(with prop: MutableProp<NSString>) {
+        prop.addListener { (text) in
+            self.text = String(text ?? "")
         }
     }
 }
