@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Morning Workout</string>
     <string name="next">Next</string>
+    <string name="prev">Prev</string>
 </resources>
