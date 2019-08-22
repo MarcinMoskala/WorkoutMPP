@@ -2,9 +2,10 @@ package sample
 
 class WorkoutViewModel(
     private val timer: Timer,
-    private val speaker: Speaker
+    private val speaker: Speaker,
+    private val exercises: List<Exercise> = getExercises()
 ) : ViewModel() {
-    private val states: List<WorkoutState> = getExercises().toStates()
+    private val states: List<WorkoutState> = exercises.toStates()
     private var state: WorkoutState = states.first()
 
     val titleProp = MutableProp("")

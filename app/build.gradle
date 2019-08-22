@@ -47,7 +47,9 @@ kotlin {
     // Switch here to iosArm64 (or iosArm32) to build library for iPhone device
     iosX64("ios") {
         binaries {
-            framework()
+            framework {
+                freeCompilerArgs.add("-Xobjc-generics")
+            }
         }
     }
     sourceSets {

@@ -22,10 +22,10 @@ class ViewController: UIViewController {
         timerView.bindText(with: viewModel.timerTextProp)
 
         viewModel.imgUrlProp.addListener { (url) in
-            self.imageView.loadImage(url: String(url ?? ""))
+            self.imageView.loadImage(url: url)
         }
         viewModel.progressProp.addListener { (progress) in
-            self.progressView.progress = Float(progress ?? 0) / 100
+            self.progressView.progress = Float(truncating: progress!) / 100
         }
         nextView.addTapGestureRecognizer { self.viewModel.onNext() }
         prevView.addTapGestureRecognizer { self.viewModel.onPrevious() }
@@ -36,7 +36,7 @@ class ViewController: UIViewController {
 extension UILabel {
     func bindText(with prop: MutableProp<NSString>) {
         prop.addListener { (text) in
-            self.text = String(text ?? "")
+            self.text = text! as String
         }
     }
 }
