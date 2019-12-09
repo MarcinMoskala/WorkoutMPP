@@ -4,7 +4,10 @@ import SnapKit
 
 class ViewController: UIViewController {
     
-    private lazy var viewModel = WorkoutViewModel(timer: iOSTimer(), speaker: iOSSpeaker())
+    private lazy var viewModel = WorkoutViewModel(
+        timer: iOSTimer(),
+        speaker: iOSSpeaker()
+    )
     
     lazy var titleView = UILabel()
     lazy var imageView = UIImageView()

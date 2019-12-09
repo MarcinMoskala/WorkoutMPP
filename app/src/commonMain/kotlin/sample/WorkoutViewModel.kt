@@ -1,10 +1,13 @@
 package sample
 
-class WorkoutViewModel(
+class WorkoutViewModel constructor(
     private val timer: Timer,
     private val speaker: Speaker,
-    private val exercises: List<Exercise> = getExercises()
+    exercises: List<Exercise> = getExercises()
 ) : ViewModel() {
+    // Overloading for Obj-C as well as default parameters are not supported yet
+    constructor(timer: Timer, speaker: Speaker) : this(timer, speaker, getExercises())
+
     private val states: List<WorkoutState> = exercises.toStates()
     private var state: WorkoutState = states.first()
 
